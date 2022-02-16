@@ -93,4 +93,27 @@ public class CalculatorNUnitTest
 		// Assert
 		Assert.AreEqual(15.9, actualResult, delta: 0.2);
 	}
+
+
+	[Test]
+	public void GetOddRange_InputMinAndMaxRange_ReturnValidOddNumberRange()
+	{
+		// Arrange
+		var calc = new Calculator();
+
+		// Act
+		var actualResult = calc.GetOddRange(5, 10);
+
+		// Assert
+		var expectedOddRange = new List<int>() { 5, 7, 9 };
+		Assert.That(actualResult, Is.EquivalentTo(expectedOddRange));
+		Assert.AreEqual(expectedOddRange, actualResult);
+		Assert.Contains(7, actualResult);
+		Assert.That(actualResult, Does.Contain(7));
+		Assert.That(actualResult, Is.Not.Empty);
+		Assert.That(actualResult.Count, Is.EqualTo(3));
+		Assert.That(actualResult, Has.No.Member(6));
+		Assert.That(actualResult, Is.Ordered); // Is.Ordered.Descending
+		Assert.That(actualResult, Is.Unique);
+	}
 }
