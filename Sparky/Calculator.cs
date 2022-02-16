@@ -5,4 +5,14 @@ public class Calculator
 	{
 		return a + b;
 	}
+
+	public double AddNumbersDouble(double a, double b)
+	{
+		return a + b;
+	}
+
+	public bool IsOddNumber(int a)
+	{
+		return (a % 2 != 0);
+	}
 }
