@@ -26,7 +26,7 @@ public class BankAccountNUnitTest
 	//	var account = new BankAccount(new LogFakker());
 	//	var result = account.Deposit(100);
 	//	Assert.IsTrue(result);
-	//	Assert.That(account.GetBalanace, Is.EqualTo(100));
+	//	Assert.That(account.GetBalance, Is.EqualTo(100));
 	//}
 
 	[Test]
@@ -37,7 +37,7 @@ public class BankAccountNUnitTest
 		var account = new BankAccount(logMock.Object);
 		var result = account.Deposit(100);
 		Assert.IsTrue(result);
-		Assert.That(account.GetBalanace, Is.EqualTo(100));
+		Assert.That(account.GetBalance, Is.EqualTo(100));
 	}
 
 	[Test]
@@ -130,5 +130,77 @@ public class BankAccountNUnitTest
 		Assert.IsFalse(logMock.Object.LogWithRefObj(ref customerNotUsed));
 	}
 
+	[Test]
+	public void BankLogDummy_SetAndGetLogTypeAndSeverityMock_MockTest()
+	{
+		// Arrange
+		var logMock = new Mock<ILogBook>();
+		logMock.SetupAllProperties();
+		logMock.Setup(u => u.LogSeverity).Returns(10);
+		logMock.Setup(u => u.Logtype).Returns("warning");
+		// You can not set value to Mock properties like that, it will not work.
+		// To make it work, you have to call SetupAllProperties().
+		// Calling SetupAllProperties(), will reset what was done before.
+		// So mmake sure you call this at the beginning of your script.
+		logMock.Object.LogSeverity = 100;
+
+		// Act
+
+		// Assert
+		Assert.That(logMock.Object.LogSeverity, Is.EqualTo(100));
+		Assert.That(logMock.Object.Logtype, Is.EqualTo("warning"));
+
+		// Callback (str): usefull when you want the returned value to be modified, and then asserted.
+		// Here, gets back the value passed to LogToDb, and acts upon it.
+		var logTemp = "Hello, ";
+		logMock.Setup(u => u.LogToDb(It.IsAny<string>()))
+			.Returns(true).Callback((string str) => logTemp += str);
+
+		// Act
+		logMock.Object.LogToDb("Ben");
+
+		// Assert
+		Assert.That(logTemp, Is.EqualTo("Hello, Ben"));
+
+		// Callback (int). To be fancy, here he use the callback before & after the returns.
+		// So it gets executed two times.
+		var counter = 5;
+		logMock.Setup(u => u.LogToDb(It.IsAny<string>()))
+			.Callback((string str) => counter++)
+			.Returns(true).Callback((string str) => counter++);
+
+		// Act
+		logMock.Object.LogToDb("Ben"); // +2
+		logMock.Object.LogToDb("Ben"); // +2
+
+		// Assert
+		Assert.That(counter, Is.EqualTo(9));
+
+	}
+
+	/// <summary>
+	/// Check whether a method was called, how many time was it called, and if a property was accessed.
+	/// </summary>
+	[Test]
+	public void BankLogDummmy_VerifyExample()
+	{
+		// Arrange
+		var logMock = new Mock<ILogBook>();
+		var bankAccount = new BankAccount(logMock.Object);
+
+		// Act
+		bankAccount.Deposit(100);
+
+		// Assert
+		Assert.That(bankAccount.GetBalance, Is.EqualTo(100));
+
+		// Verity
+		logMock.Verify(u => u.Message(It.IsAny<string>()), Times.Exactly(2));
+		logMock.Verify(u => u.Message("Test"), Times.AtLeastOnce);
+		logMock.VerifySet(u => u.LogSeverity = 101, Times.Once);
+		logMock.VerifyGet(u => u.LogSeverity, Times.Once);
+	}
 }
+
+
 
