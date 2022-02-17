@@ -67,8 +67,9 @@ public class BankAccountNUnitTest
 	{
 		// Arrange
 		var logMock = new Mock<ILogBook>();
-		// If the "It is" is validated, the mock returns true. Otherwise, false.
-		// But you can add a line to say it explicitely
+		// If the "It is" is validated, the mock returns true. Otherwise, false (default values).
+		// For string, the default value is null, so beaware!
+		// But you can add a line to configure the complementary case explicitely
 		logMock.Setup(u => u.LogBalanceAfterWithdraw(It.Is<int>(x => x >= 0))).Returns(true);
 		logMock.Setup(u => u.LogBalanceAfterWithdraw(It.Is<int>(x => x < 0))).Returns(false);
 		logMock.Setup(u => u.LogBalanceAfterWithdraw(It.IsInRange<int>(int.MinValue, -1, Moq.Range.Inclusive))).Returns(false);
@@ -81,5 +82,53 @@ public class BankAccountNUnitTest
 		// Assert
 		Assert.IsFalse(actualResult);
 	}
+
+	[Test]
+	public void BankLogDummy_LogMockString_ReturnTrue()
+	{
+		// Arrange
+		var logMock = new Mock<ILogBook>();
+		logMock.Setup(u => u.MessgeWithReturnStr(It.IsAny<string>())).Returns((string str) => str.ToLower());
+		var desiredOutput = "hello";
+
+		// Act
+
+		// Assert
+		Assert.That(logMock.Object.MessgeWithReturnStr("HELLo"), Is.EqualTo(desiredOutput));
+	}
+
+
+	[Test]
+	public void BankLogDummy_LogMockStringOutputStr_ReturnTrue()
+	{
+		// Arrange
+		var logMock = new Mock<ILogBook>();
+		string desiredOutput = "hello";
+		logMock.Setup(u => u.LogWithOutputResult(It.IsAny<string>(), out desiredOutput)).Returns(true);
+
+		// Act
+
+		// Assert
+		var actualOutput = "";
+		Assert.IsTrue(logMock.Object.LogWithOutputResult("Ben", out actualOutput));
+		Assert.That(actualOutput, Is.EqualTo(desiredOutput));
+	}
+
+	[Test]
+	public void BankLogDummy_LogRefChecker_ReturnsTrue()
+	{
+		// Arrange
+		var logMock = new Mock<ILogBook>();
+		var customer = new Customer();
+		var customerNotUsed = new Customer();
+		logMock.Setup(u => u.LogWithRefObj(ref customer)).Returns(true);
+
+		// Act
+
+		// Assert
+		Assert.IsTrue(logMock.Object.LogWithRefObj(ref customer));
+		Assert.IsFalse(logMock.Object.LogWithRefObj(ref customerNotUsed));
+	}
+
 }
 

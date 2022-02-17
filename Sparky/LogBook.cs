@@ -11,6 +11,9 @@ public interface ILogBook
 	void Message(string message);
 	bool LogToDb(string message);
 	bool LogBalanceAfterWithdraw(int balanceAfterWithdraw);
+	string MessgeWithReturnStr(string message);
+	bool LogWithOutputResult(string str, out string outputStr);
+	bool LogWithRefObj(ref Customer customer);
 }
 
 public class LogBook : ILogBook
@@ -32,9 +35,26 @@ public class LogBook : ILogBook
 		return true;
 	}
 
-	public void Message(string messgage)
+	public bool LogWithOutputResult(string str, out string outputStr)
 	{
-		Console.WriteLine(Message);
+		outputStr = "Hello " + str;
+		return true;
+	}
+
+	public bool LogWithRefObj(ref Customer customer)
+	{
+		return true;
+	}
+
+	public void Message(string message)
+	{
+		Console.WriteLine(message);
+	}
+
+	public string MessgeWithReturnStr(string message)
+	{
+		Console.WriteLine(message);
+		return message.ToLower();
 	}
 }
 
