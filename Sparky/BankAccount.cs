@@ -28,10 +28,11 @@ public class BankAccount
 	{
 		if(amount <= balance)
 		{
+			_logBook.LogToDb("Withdraw Amount: " + amount.ToString());
 			balance -= amount;
-			return true;
+			return _logBook.LogBalanceAfterWithdraw(balance);
 		}
-		return false;
+		return _logBook.LogBalanceAfterWithdraw(balance-amount);
 	}
 
 	public int GetBalanace()
