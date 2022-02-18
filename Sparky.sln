@@ -3,11 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32126.317
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sparky", "Sparky\Sparky.csproj", "{4A532C04-060D-4EA9-9979-46BD5BD7E238}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sparky", "Basic Fundations\Sparky\Sparky.csproj", "{4A532C04-060D-4EA9-9979-46BD5BD7E238}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SparkyMSTest", "SparkyMSTest\SparkyMSTest.csproj", "{211136FF-B166-434D-8499-D2981928AB0C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SparkyMSTest", "Basic Fundations\SparkyMSTest\SparkyMSTest.csproj", "{211136FF-B166-434D-8499-D2981928AB0C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SparkyNUnitTest", "SparkyNUnitTest\SparkyNUnitTest.csproj", "{28E895AC-3A6D-47BE-9919-9D20E9E5998B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SparkyNUnitTest", "Basic Fundations\SparkyNUnitTest\SparkyNUnitTest.csproj", "{28E895AC-3A6D-47BE-9919-9D20E9E5998B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Basic Fundations", "Basic Fundations", "{B12DEEFE-E4FC-43C5-A6D2-B0BFCF10F8B3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BongoWeb", "BongoWeb", "{2793F2C8-07BC-43C7-932C-318837C40273}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bongo.Core", "Bongo_InitialSetup (.NET 6)\Bongo.Core\Bongo.Core.csproj", "{B747762A-5262-400A-9D1B-227934983A3F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bongo.DataAccess", "Bongo_InitialSetup (.NET 6)\Bongo.DataAccess\Bongo.DataAccess.csproj", "{C298B98F-BA81-4F4E-B65B-364D3C0A4BD4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bongo.Models", "Bongo_InitialSetup (.NET 6)\Bongo.Models\Bongo.Models.csproj", "{52DD69BA-1115-4BEE-8A1E-DA2970264BC2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bongo.Web", "Bongo_InitialSetup (.NET 6)\Bongo.Web\Bongo.Web.csproj", "{991914A6-8AA1-4591-89E4-C09B751E39A7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,9 +39,34 @@ Global
 		{28E895AC-3A6D-47BE-9919-9D20E9E5998B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28E895AC-3A6D-47BE-9919-9D20E9E5998B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28E895AC-3A6D-47BE-9919-9D20E9E5998B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B747762A-5262-400A-9D1B-227934983A3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B747762A-5262-400A-9D1B-227934983A3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B747762A-5262-400A-9D1B-227934983A3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B747762A-5262-400A-9D1B-227934983A3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C298B98F-BA81-4F4E-B65B-364D3C0A4BD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C298B98F-BA81-4F4E-B65B-364D3C0A4BD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C298B98F-BA81-4F4E-B65B-364D3C0A4BD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C298B98F-BA81-4F4E-B65B-364D3C0A4BD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52DD69BA-1115-4BEE-8A1E-DA2970264BC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52DD69BA-1115-4BEE-8A1E-DA2970264BC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52DD69BA-1115-4BEE-8A1E-DA2970264BC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52DD69BA-1115-4BEE-8A1E-DA2970264BC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{991914A6-8AA1-4591-89E4-C09B751E39A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{991914A6-8AA1-4591-89E4-C09B751E39A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{991914A6-8AA1-4591-89E4-C09B751E39A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{991914A6-8AA1-4591-89E4-C09B751E39A7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4A532C04-060D-4EA9-9979-46BD5BD7E238} = {B12DEEFE-E4FC-43C5-A6D2-B0BFCF10F8B3}
+		{211136FF-B166-434D-8499-D2981928AB0C} = {B12DEEFE-E4FC-43C5-A6D2-B0BFCF10F8B3}
+		{28E895AC-3A6D-47BE-9919-9D20E9E5998B} = {B12DEEFE-E4FC-43C5-A6D2-B0BFCF10F8B3}
+		{B747762A-5262-400A-9D1B-227934983A3F} = {2793F2C8-07BC-43C7-932C-318837C40273}
+		{C298B98F-BA81-4F4E-B65B-364D3C0A4BD4} = {2793F2C8-07BC-43C7-932C-318837C40273}
+		{52DD69BA-1115-4BEE-8A1E-DA2970264BC2} = {2793F2C8-07BC-43C7-932C-318837C40273}
+		{991914A6-8AA1-4591-89E4-C09B751E39A7} = {2793F2C8-07BC-43C7-932C-318837C40273}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F6E075DE-69B7-4B08-93A2-65DD406F46E4}
