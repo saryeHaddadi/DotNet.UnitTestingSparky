@@ -137,7 +137,6 @@ public class StudyRoomBookingServiceTests
 	{
 		// Arrange
 		_availableStudyRoom.Clear();
-
 		// Act
 		var actualResult = _bookingService.BookStudyRoom(_request);
 
